@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+pi_extinct.Rproj
+.DS_Store
+._.DS_Store
+
+# directories
+data
+logs
+plots
+MAR
