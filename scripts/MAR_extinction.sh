@@ -12,7 +12,7 @@ set -eo pipefail
 HOMEDIR="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/meixilin/pi_extinct/"
 COMMITID=$(git --git-dir="${HOMEDIR}/.git" --work-tree="${HOMEDIR}/" rev-parse master)
 
-RSCRIPT="${HOMEDIR}/MAR_extinction.R"
+RSCRIPT="${HOMEDIR}/scripts/MAR_extinction.R"
 SPECIES=${1}
 
 cd ${HOMEDIR}

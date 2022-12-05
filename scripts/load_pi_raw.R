@@ -20,4 +20,21 @@ for (ii in (filelist)) {
     ggsave(filename = paste0(ii, '.pi.pdf'), path = plotdir, height = 8, width = 8)
 }
 
+# plot random extinction from now
+dtpath = './data/extinctionsim-new/'
+plotdir = './plots/pi_new/'
+dir.create(plotdir, recursive = T)
+filelist = list.files(path = dtpath,
+                      pattern = 'extinctionsim-new-')
+
+for (ii in (filelist)) {
+    load(paste0(dtpath, ii))
+    pp = ggplot(xsim, aes(x = ax, y = pi, color = type)) +
+        geom_point() +
+        facet_wrap(. ~ type) +
+        labs(title = ii)
+    ggsave(filename = paste0(ii, '.pi.pdf'), path = plotdir, height = 8, width = 8)
+}
+
+
 
