@@ -24,7 +24,10 @@ fileextinctionsim = paste0(outdir, 'extinctionsim-new-', species, '.rda')
 
 # load data --------
 dtpath = '/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/mutationarearelationship/mar/tmpobjects/'
-load(paste0(dtpath, '/genemaps-', species, '.rda'))
+genemapfile = paste0(dtpath, '/genemaps-', species, '.rda')
+load(genemapfile)
+# copy the files just in case
+file.copy(genemapfile, '/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/meixilin/pi_extinct/data-raw/genemaps/')
 
 # main --------
 ## extinction##############################################################################
@@ -35,7 +38,7 @@ random.X<-
     MARextinction_sim(genemaps,scheme = "random",
                       xfrac=0.01) %>%
     mutate(type='random')
-# extinction from outside to
+# extinction from outside to inside
 inward.X<-
     MARextinction_sim(genemaps,scheme = "inwards",
                       xfrac=0.01) %>%
@@ -54,17 +57,19 @@ sn.X<-
 radial.X<-
     MARextinction_sim(genemaps,scheme = "radial",
                       centerfun = median,
-                      xfrac=0.05) %>%
+                      xfrac=0.01) %>%
     mutate(type='radial')
+# radial from south
 radial.spain.X<-
     MARextinction_sim(genemaps,scheme = "radial",
                       centerfun = min,
-                      xfrac=0.05) %>%
+                      xfrac=0.01) %>%
     mutate(type='radial.xymin')
+# radial from north
 radial.scand.X<-
     MARextinction_sim(genemaps,scheme = "radial",
                       centerfun = max,
-                      xfrac=0.05) %>%
+                      xfrac=0.01) %>%
     mutate(type='radial.xymax')
 # assemble all simulations
 xsim<-rbind(random.X,
