@@ -1,7 +1,7 @@
 library(ggplot2)
 library(dplyr)
 
-theme_set(theme_bw())
+theme_set(cowplot::theme_cowplot())
 
 # plot random extinction from before
 dtpath = '/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/mutationarearelationship/mar/tmpobjects/'
