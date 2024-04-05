@@ -11,4 +11,5 @@ data
 logs
 plots
 MAR
-data-raw
+data-raw/*
+!data-raw/README.md
