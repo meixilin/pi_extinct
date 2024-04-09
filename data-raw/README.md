@@ -1,6 +1,6 @@
 # data-raw file source and archive record
 
-Source file: 
+Source file:
 
 ```bash
 safedata="/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone"
@@ -8,7 +8,7 @@ expired_mar="${safedata}/mutationarearelationship"
 current_mar="${safedata}/BERKELEY/archive/2022_Exposito-Alonso_mar"
 ```
 
-Previously, genemaps have been copied: 
+Previously, genemaps have been copied:
 
 ```R
 dtpath = '/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/mutationarearelationship/mar/tmpobjects/'
@@ -18,7 +18,7 @@ load(genemapfile)
 file.copy(genemapfile, '/Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/meixilin/pi_extinct/data-raw/genemaps/')
 ```
 
-Copy some files to local for testing: 
+Copy some files to local for testing:
 
 ```bash
 cd /home/mlin/safedata/meixilin/pi_extinct/data-raw
@@ -46,7 +46,7 @@ ff7992d1fd52738e85476b182d6b4900  extinctionsim-populus.rda
 7726dc06db5150f7f9a45a142241cbfe  extinctionsim-warbler.rda
 ```
 
-genemaps: 
+genemaps:
 
 ```
 03bdce1d5a78fbc9868a48bbda16e603  genemaps-acropora.rda
@@ -66,7 +66,14 @@ c97b86b693dd7730df7800251cec2dbb  genemaps-songbird.rda
 b210d5e250d43d6cef192af4d7d4c07d  genemaps-warbler.rda
 ```
 
+# download all the tmpobjects
 
+```bash
+# 2024-04-05 11:30:46
+SOURCE="/home/mlin/safedata/BERKELEY/archive/2022_Exposito-Alonso_mar/mar/tmpobjects"
+
+rsync -ahv mlin@calc.dpb.carnegiescience.edu:${SOURCE} ./test/
+```
 
 
 

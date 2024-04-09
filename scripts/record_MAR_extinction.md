@@ -1,7 +1,7 @@
-# rerun the extinction simulations 
+# rerun the extinction simulations
 
 ```bash
-# 2022-12-01 
+# 2022-12-01
 cd /Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/meixilin/pi_extinct/scripts
 # to submit:
 sbatch_species() {
@@ -15,7 +15,7 @@ for SPECIES in ${LSPECIES[@]}; do
 echo $SPECIES
 sleep 2
 sbatch_species $SPECIES
-done 
+done
 ```
 
 # run the extinction simulations keeping the N constant
@@ -37,6 +37,9 @@ for SPECIES in ${LSPECIES[@]}; do
 echo $SPECIES
 sleep 2
 sbatch_species $SPECIES
-done 
+done
 ```
+
+
+
 
