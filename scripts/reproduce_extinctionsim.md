@@ -34,6 +34,9 @@ run_reprotest "v68da8"
 
 reinstall_mar
 run_reprotest "v9c7c5"
+
+# another 3c576 run
+run_reprotest "v11111"
 ```
 
 | git hash | version name | comparison results | edits |
@@ -75,7 +78,63 @@ compare_gits(myversions)
 
 ## conclusion: the culprit is the git commit `9c7c53428`
 
-# after fixing the error in `mar` commits
+```R
+# check if the thetaw is the same after the change in versions
+myversions = c("vf1696", "v9c7c5")
+outdfs = lapply(myversions, function(myversion) {
+    df = loadSomeRData("outdfl", paste0("./data/reproduce_extinctionsim/", myversion, "/reproduce_extinctionsim.RData"))
+    df = df[[1]][[1]]
+    return(df)
+})
+
+filter_df = function(df, mytype) {
+    df[df$type == mytype, ]
+}
+
+# View(outdfs[[1]])
+all.equal(filter_df(outdfs[[1]], 'random')$N, filter_df(outdfs[[2]], 'random')$N) # TRUE
+all.equal(filter_df(outdfs[[1]], 'random')$M, filter_df(outdfs[[2]], 'random')$M)
+
+# check 3c576 again
+myversions = c("v3c576", "v11111")
+
+outdfs = lapply(myversions, function(myversion) {
+        df = loadSomeRData("outdfl", paste0("./data/reproduce_extinctionsim/", myversion, "/reproduce_extinctionsim.RData"))
+        df = df[[1]][[1]][,-11]
+        return(df)
+    })
+
+all.equal(outdfs[[1]], outdfs[[2]])
+# TRUE
+```
+
+# located the source of descrepancy
+
+through out the extinction process, the same number of samples were used as `rasterN` where actually it should be `N`
+by the definitions of $\theta_w$ and $\theta_\pi$
+
+comparing commits 9c7c with 3c57
+
+```
+# 9c7c
+  if (length(rasterN) == 0) {
+    rasterN = N
+  }
+  # freqs
+  P<-fn(apply(values(raster_mutmaps), 2, function(cells) sum(cells>0,na.rm=T) )) / rasterN
+
+# 3c57
+P<-fn(apply(values(raster_mutmaps), 2, function(cells) sum(cells>0,na.rm=T) )) / N
+
+```
+
+# for more updates on extinction-sim developments, see `mar` directory
+
+```
+
+```
+
+
 
 
 
