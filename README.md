@@ -12,6 +12,28 @@ Last updated: 2024-04-19 17:31:20
 
 species tested:
 
+```
+acropora
+alyrata
+amaranthus
+arabidopsis
+dest
+eucalyptus
+homosapiens
+joshua
+mimulus
+mosquito
+panicum
+panicumhallii90
+peromyscus
+populus
+rhino
+songbird
+torrey
+warbler
+wolf
+```
+
 number of replicates: `20` per species per extinction scheme
 
 extinction schemes explored: `random` and `southnorth`

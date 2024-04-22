@@ -1,45 +1,37 @@
-# rerun the extinction simulations
+# running `MAR_extinction.R`
+
+Sun Apr 21 18:13:04 PDT 2024
 
 ```bash
-# 2022-12-01
-cd /Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/meixilin/pi_extinct/scripts
-# to submit:
-sbatch_species() {
-    local SPECIES=${1}
-    sbatch --job-name="${SPECIES}" MAR_extinction.sh ${SPECIES}
-}
-sbatch_species 'joshua' # this log was lost
-declare -a LSPECIES=(acropora alyrata amaranthus arabidopsis dest eucalyptus mimulus mosquito panicumhallii panicum peromyscus populus songbird warbler)
-
-for SPECIES in ${LSPECIES[@]}; do
-echo $SPECIES
-sleep 2
-sbatch_species $SPECIES
-done
-```
-
-# run the extinction simulations keeping the N constant
-
-```bash
-# 2023-03-13
-cd /Carnegie/DPB/Data/Shared/Labs/Moi/Everyone/meixilin/pi_extinct/scripts
-# to submit:
 sbatch_species() {
     local SPECIES=${1}
     sbatch --job-name="${SPECIES}" MAR_extinction.sh ${SPECIES}
 }
 
-sbatch_species 'joshua' # 178742
-
-declare -a LSPECIES=(acropora alyrata amaranthus arabidopsis dest eucalyptus mimulus mosquito panicumhallii panicum peromyscus populus songbird warbler)
+declare -a LSPECIES=(acropora alyrata amaranthus arabidopsis dest eucalyptus joshua mimulus mosquito panicum panicumhallii peromyscus populus songbird warbler)
 
 for SPECIES in ${LSPECIES[@]}; do
-echo $SPECIES
-sleep 2
-sbatch_species $SPECIES
+    echo $SPECIES
+    sleep 2
+    sbatch_species $SPECIES
+done
+
+# panicumhallii out of memory (job id: 18179332)
+
+# use the -90 suffix and add some leftover species
+declare -a LSPECIES=(homosapiens panicumhallii90 rhino torrey wolf)
+
+for SPECIES in ${LSPECIES[@]}; do
+    echo $SPECIES
+    sleep 2
+    sbatch_species $SPECIES
 done
 ```
 
+# running summary script 
 
+```
+Rscript --vanilla scripts/extinctionsim_summary.R &> data/extinctionsim_summary/extinctionsim_summary.log
+```
 
 
