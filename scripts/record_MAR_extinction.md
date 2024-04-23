@@ -34,4 +34,16 @@ done
 Rscript --vanilla scripts/extinctionsim_summary.R &> data/extinctionsim_summary/extinctionsim_summary.log
 ```
 
+# debug and check the extinction process in southnorth extinction scheme
+
+
+```bash
+debug_sn() {
+    local SPECIES=${1}
+    sbatch --job-name="${SPECIES}" southnorth_track.sh ${SPECIES}
+}
+
+debug_sn "joshua"
+debug_sn "arabidopsis"
+```
 
