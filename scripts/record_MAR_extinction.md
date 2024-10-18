@@ -32,6 +32,11 @@ done
 
 ```
 Rscript --vanilla scripts/extinctionsim_summary.R &> data/extinctionsim_summary/extinctionsim_summary.log
+
+# the ggplot2 no longer work in new version
+require(remotes)
+install_version("ggplot2", version = "3.4.4", repos = "http://cran.us.r-project.org")
+
 ```
 
 # debug and check the extinction process in southnorth extinction scheme
@@ -45,5 +50,6 @@ debug_sn() {
 
 debug_sn "joshua"
 debug_sn "arabidopsis"
+debug_sn "panicumhallii90"
 ```
 

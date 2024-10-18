@@ -68,7 +68,7 @@ allspecies_data <- function(pp) {
 
 # def variables --------
 # 19 species
-specieslist = c("acropora","alyrata","amaranthus","arabidopsis","dest","eucalyptus","homosapiens","joshua","mimulus","mosquito","panicum","panicumhallii90","peromyscus","populus","rhino","songbird","torrey","warbler","wolf")
+specieslist = c("acropora","alyrata","amaranthus","arabidopsis","dest","eucalyptus","joshua","mimulus","mosquito","panicum","panicumhallii90","peromyscus","populus","rhino","songbird","torrey","warbler","wolf")
 
 outdir = './data/extinctionsim_summary/'
 dir.create(outdir)
@@ -90,19 +90,19 @@ save_plot(filename = paste0(outdir, "compare_endtheta_acropora.pdf"), plot = pp,
 
 # plot all species summary --------
 pp_random <- plot_grid(plotlist = pp_randomlist_end, align = 'hv', axis = 'tblr', ncol = 4)
-save_plot(filename = paste0(outdir, "xsim-randomend-19species.pdf"), plot = pp_random, 
+save_plot(filename = paste0(outdir, "xsim-randomend-18species.pdf"), plot = pp_random, 
           ncol = 4, nrow = 5, base_height = 4, base_asp = 1)
 
 pp_southnorth <- plot_grid(plotlist = pp_southnorthlist_end, align = 'hv', axis = 'tblr', ncol = 4)
-save_plot(filename = paste0(outdir, "xsim-southnorthend-19species.pdf"), plot = pp_southnorth, 
+save_plot(filename = paste0(outdir, "xsim-southnorthend-18species.pdf"), plot = pp_southnorth, 
           ncol = 4, nrow = 5, base_height = 4, base_asp = 1)
 
 # output files --------
 xsim_randomend = lapply(pp_randomlist_end, allspecies_data) %>% dplyr::bind_rows()
 xsim_southnorthend = lapply(pp_southnorthlist_end, allspecies_data) %>% dplyr::bind_rows()
 
-write.csv(xsim_randomend, file = paste0(outdir, "xsim-randomend-19species.csv"))
-write.csv(xsim_southnorthend, file = paste0(outdir, "xsim-southnorthend-19species.csv"))
+write.csv(xsim_randomend, file = paste0(outdir, "xsim-randomend-18species.csv"))
+write.csv(xsim_southnorthend, file = paste0(outdir, "xsim-southnorthend-18species.csv"))
 
 # cleanup --------
 save.image(file = paste0(outdir, "extinctionsim_summary.RData"))
